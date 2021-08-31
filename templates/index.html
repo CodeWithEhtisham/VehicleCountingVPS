@@ -43,7 +43,7 @@
           </a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="{{url_for('livestream')}}" class="nav-link" >
+            <a href="#" class="nav-link" >
           <span class="badge badge-warning " style="background-color:rgb(144,210,250); font-size: medium;">Live</span>
           </a>
         </li>
@@ -383,9 +383,7 @@
               </div>
               <!-- /.card -->
             </div>
-            <!-- <div class="col-md-6">
-              <img src="{{ url_for('video_feed') }}" ,style="width: 100%;height: 390px;" >
-            </div> -->
+            
             <!-- /.col -->
           </div>
           <!-- /.row -->
@@ -488,7 +486,7 @@
         })
         
         }
-        if (line_plot.length > 15) {
+        if (line_plot.length > 30) {
           line_plot.shift();
         }
         // chart.clear();

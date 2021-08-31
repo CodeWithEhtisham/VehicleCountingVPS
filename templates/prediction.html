@@ -419,13 +419,14 @@
   <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
   <script>
 
-    setInterval(function () {
-      var myimageelement = document.getElementById('myImage');
-      myimageelement.src = "/static/img/output.jpg?rand=" + Math.random();
+    // setInterval(function () {
+     
 
-    }, 2500)
+    // }, 2500)
     function ShowCurrentTime() {
                 // Ajax call to YOUR_PAGE.aspx/GetCurrentTime
+                var myimageelement = document.getElementById('myImage');
+      myimageelement.src = "/static/img/output.jpg?rand=" + Math.random();
                 $.ajax({
                     type: "GET",
                     url: "/fetchtable", // Change Default.aspx to your ASPX page name, and GetCurrentTime to your server-side WebMethod name
@@ -451,7 +452,7 @@
 
             $(function () {
                 // Call every 1000 miliseconds
-                window.setInterval(ShowCurrentTime, 8000);
+                window.setInterval(ShowCurrentTime, 5000);
             });
 
     // function parsedate(y, m, d, h, mi, s) {

@@ -1,5 +1,5 @@
 import cv2
-# import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 # import cvlib as cv
 # from cvlib.object_detection import draw_bbox
 import datetime
@@ -94,14 +94,48 @@ while True:
         # buffer=buffer.tobytes()
         # print(buffer)
         string_img = base64.b64encode(cv2.imencode('.jpg', frame)[1]).decode()
+        tag=str(random.random()*100)
         obj={
             "image":string_img,
-            "tag":str(random.random()),
+            "tag":tag,
             "datetime":datetime.datetime.now().__str__(),
             "camera_id":"12345",
             "camera_loc":"UOB",
-            "results":results,
+            "results":results
         }
+        print("result",results)
+        dic={
+            "Car":0,
+            "Bus":0,
+            "Truck":0,
+            "rikshaw":0,
+            "Bike":0,
+            "Van":0,
+            "total":0
+
+        }
+        for i in results:
+            # print(i["label"])
+            if i["label"] =='Motorcycle' or i["label"]=="Bicycle":
+                dic['Bike']+=1
+                dic['total']+=1
+            elif i['label']=='Auto_rikshaw':
+                dic['rikshaw']+=1
+                dic['total']+=1
+            elif i['label']=='Bus':
+                dic['Bus']+=1
+                dic['total']+=1
+            elif i['label']=='Truck':
+                dic['Truck']+=1
+                dic['total']+=1
+            elif i['label']=='Van':
+                dic['Van']+=1
+                dic['total']+=1
+            else:
+                dic['Car']+=1
+                dic['total']+=1
+
+        print(json.dumps(dic),tag)
         # print(obj)
         # cv2.imshow("frame",frame)
         # response_res=requests.post("http://127.0.0.1:5000/upload",json=obj)

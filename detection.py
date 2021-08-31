@@ -139,7 +139,7 @@ while True:
         # print(obj)
         # cv2.imshow("frame",frame)
         # response_res=requests.post("http://127.0.0.1:5000/upload",json=obj)
-        response_res=requests.post("http://192.168.18.34:5000/upload",json=obj) #home desktop
+        response_res=requests.post("http://192.168.18.146:5000/upload",json=obj) #home desktop
         print(json.loads(response_res.text))
         # break
     if cv2.waitKey(1) & 0xFF == ord('q'):

@@ -78,10 +78,10 @@ while True:
             labelSize,baseLine= cv2.getTextSize(label,cv2.FONT_HERSHEY_SIMPLEX,0.5,1)
             left,top,wedth,height=box
             top=max(top,labelSize[1])
-            cv2.rectangle(frame,box,color=(0,255,0),thickness=3)
-            cv2.rectangle(frame,(left,top-labelSize[1]),(left+labelSize[0],top +baseLine),(255,255,255),cv2.FILLED)
-            cv2.putText(frame,label,(left,top),cv2.FONT_HERSHEY_SIMPLEX,0.5,(0,0,0))
-            startTime = time.time() # reset time
+            # cv2.rectangle(frame,box,color=(0,255,0),thickness=3)
+            # cv2.rectangle(frame,(left,top-labelSize[1]),(left+labelSize[0],top +baseLine),(255,255,255),cv2.FILLED)
+            # cv2.putText(frame,label,(left,top),cv2.FONT_HERSHEY_SIMPLEX,0.5,(0,0,0))
+            # startTime = time.time() # reset time
             results.append({
                 "label":str(names[classId]),
                 "prob":str('%.2f' % confidance),
@@ -103,43 +103,43 @@ while True:
             "camera_loc":"UOB",
             "results":results
         }
-        print("result",results)
-        dic={
-            "Car":0,
-            "Bus":0,
-            "Truck":0,
-            "rikshaw":0,
-            "Bike":0,
-            "Van":0,
-            "total":0
+        # print("result",results)
+        # dic={
+        #     "Car":0,
+        #     "Bus":0,
+        #     "Truck":0,
+        #     "rikshaw":0,
+        #     "Bike":0,
+        #     "Van":0,
+        #     "total":0
 
-        }
-        for i in results:
-            # print(i["label"])
-            if i["label"] =='Motorcycle' or i["label"]=="Bicycle":
-                dic['Bike']+=1
-                dic['total']+=1
-            elif i['label']=='Auto_rikshaw':
-                dic['rikshaw']+=1
-                dic['total']+=1
-            elif i['label']=='Bus':
-                dic['Bus']+=1
-                dic['total']+=1
-            elif i['label']=='Truck':
-                dic['Truck']+=1
-                dic['total']+=1
-            elif i['label']=='Van':
-                dic['Van']+=1
-                dic['total']+=1
-            else:
-                dic['Car']+=1
-                dic['total']+=1
+        # }
+        # for i in results:
+        #     # print(i["label"])
+        #     if i["label"] =='Motorcycle' or i["label"]=="Bicycle":
+        #         dic['Bike']+=1
+        #         dic['total']+=1
+        #     elif i['label']=='Auto_rikshaw':
+        #         dic['rikshaw']+=1
+        #         dic['total']+=1
+        #     elif i['label']=='Bus':
+        #         dic['Bus']+=1
+        #         dic['total']+=1
+        #     elif i['label']=='Truck':
+        #         dic['Truck']+=1
+        #         dic['total']+=1
+        #     elif i['label']=='Van':
+        #         dic['Van']+=1
+        #         dic['total']+=1
+        #     else:
+        #         dic['Car']+=1
+        #         dic['total']+=1
 
-        print(json.dumps(dic),tag)
+        # print(json.dumps(dic),tag)
         # print(obj)
         # cv2.imshow("frame",frame)
         # response_res=requests.post("http://127.0.0.1:5000/upload",json=obj)
-        response_res=requests.post("http://192.168.18.34:5000/upload",json=obj) #home desktop
+        response_res=requests.post("http://192.168.42.238:4000/upload",json=obj) #home desktop
         print(json.loads(response_res.text))
         # break
     if cv2.waitKey(1) & 0xFF == ord('q'):

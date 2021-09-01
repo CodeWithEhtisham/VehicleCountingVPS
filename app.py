@@ -9,12 +9,14 @@ import sqlite3
 import base64
 import numpy as np
 import pandas as pd
+import time
 # import sys
 # import os
 # from utils import getter,setter
 app = Flask(__name__)
 # global flags 
 flags=False
+waiting=True
 # stream = Streaming_Video('0.0.0.0', 5555)
 
 
@@ -143,14 +145,16 @@ def data_check(df, name):
 
 def bar_data(df):
     df = df.lable.value_counts()
+    # print(data_check(df, "Motorcycle"))
+    # print(type(data_check(df, "Motorcycle")))
     return [
         [1, data_check(df, 'Car')],
         [2, data_check(df, "Bus")],
-        [3, data_check(df, "Motorcycle")],
+        [3, data_check(df, "Motorcycle") + data_check(df, "Bicycle") ],
         [4, data_check(df, "Van")],
         [5, data_check(df, "Truck")],
-        [6, data_check(df, "Bicycle")],
-        [7, data_check(df, "Auto_rikshaw")]
+        [6, data_check(df, "Auto_rikshaw")]
+        # [7, data_check(df, "Auto_rikshaw")]
     ]
 
 def donut_data(df):
@@ -176,14 +180,14 @@ def donut_data(df):
         },
         {
             'label': 'Bike',
-            'data': int((data_check(df, "Bike")/s)*100),
+            'data': int((data_check(df, "Bike")/s)*100) + int((data_check(df, "Bicycle")/s)*100),
             'color': '#6D7B8D'
         },
-        {
-            'label': 'Cycle',
-            'data': int((data_check(df, "Bicycle")/s)*100),
-            'color': '#566D7E'
-        },
+        # {
+        #     'label': 'Cycle',
+        #     'data': int((data_check(df, "Bicycle")/s)*100),
+        #     'color': '#566D7E'
+        # },
         {
             'label': 'Rikshaw',
             'data': int((data_check(df, "Auto_rikshaw")/s)*100),
@@ -218,7 +222,15 @@ def line_plot(df):
     value = [int(i) for i in dt.id.values]
     return year, month, day, hour, minute, second, value, len(dt.id.values)
 
-
+@app.route("/home", methods=['GET', 'POST'])
+def home():
+    # try:
+    #     del streams
+    # except UnboundLocalError:
+    #     streams=gen(True)
+    # flags=False
+    # gen(False)
+    return render_template("index.html", jsondata=get_json())
 @app.route("/", methods=['GET', 'POST'])
 def index():
     # try:
@@ -245,7 +257,7 @@ def index():
 def history():
     print("history loading")
     if request.method=="POST":
-        print("post histoyr")
+        # print("post histoyr")
         print("start datetime",request.form['start'])
         return render_template("history.html",jsondata=get_json())
     else:
@@ -254,10 +266,10 @@ def history():
         
 @app.route("/prediction",methods=["GET","POST"])
 def prediction():
-    print("prediction loading")
+    # print("prediction loading")
     if request.method=="POST":
-        print("post prediction")
-        print("start datetime",request.form['start'])
+        # print("post prediction")
+        # print("start datetime",request.form['start'])
         return render_template("prediction.html",jsondata=get_json())
     else:
         print("get prediction")
@@ -270,13 +282,29 @@ def send_result(response=None, error='', status=200):
     return Response(status=status, mimetype="application/json", response=result)
 @app.route('/fetchtable',methods=["POST","GET"])
 def get_table_data():
+
+    global waiting
+    # waiting=False
+    while True:
+        # print("************************************************** ({})".format(waiting))
+        if waiting==True:
+            # print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ ({})".format(waiting))
+            break
     df,tag=fetchDataframe(1)
     print(df,tag)
     return df
 
 @app.route('/fetchdata', methods=["POST"])
 def get_json():
+    # print("hello")
     global flags
+    global waiting
+    # waiting=False
+    while True:
+        # print("************************************************** ({})".format(waiting))
+        if waiting==True:
+            # print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ ({})".format(waiting))
+            break
     if flags == False:
         # print ("flag false statement")
         df = fetchDataframe()
@@ -347,6 +375,10 @@ def db_results_insertion(data):
 
 @app.route("/upload", methods=['POST'])
 def login():
+    
+    global waiting
+    waiting=False
+    # print("/////////////////////////////////////////////////////////// ({})".format(waiting))
     if request.method == 'POST':
         try:
             img_str = request.json['image']
@@ -358,7 +390,7 @@ def login():
             img_byte=base64.b64decode(img_str.encode('utf-8'))
             img=Image.open(io.BytesIO(img_byte))
             img.save(f"static/img/output.jpg")
-            img.save(f"static/img/{tag}.jpg")
+            # img.save(f"static/img/{tag}.jpg")
             # jpg_original = base64.b64decode(img_str)
             # jpg_as_np = np.frombuffer(jpg_original, dtype=np.uint8)
             # img = imdecode(jpg_as_np, flags=1)
@@ -374,6 +406,9 @@ def login():
                 w = r['w']
                 h = r['h']
                 db_results_insertion((frame_id, lbl, prob, x, y, w, h))
+            waiting=True
+            # print("/////////////////////////////////////////////////////////// ({})".format(waiting))
+
 
             return send_result("Frame inserted success", status=201)
         except KeyError as e:
@@ -384,4 +419,4 @@ def login():
 
 if __name__ == "__main__":
     # app.run(host="127.0.0.1",threaded=True)
-    app.run(host="0.0.0.0",threaded=True,debug=True) # home desktop
+    app.run(host="0.0.0.0",port=4000,threaded=True,debug=True) # home desktop

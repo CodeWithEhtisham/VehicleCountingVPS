@@ -143,8 +143,7 @@
           </a>
         </li> -->
         <li class="nav-item dropdown">
-          <a  href="{{ url_for('history') }}">
-            <!-- <i class="far fa-bell"></i> --> 
+          <a  href="#">
             <span class="badge badge-warning navbar-badge" style="background-color:rgb(144,210,250); font-size: medium;">History</span>
           </a>
         </li>
@@ -486,7 +485,7 @@
         })
         
         }
-        if (line_plot.length > 30) {
+        if (line_plot.length > 40) {
           line_plot.shift();
         }
         // chart.clear();
@@ -519,7 +518,7 @@
                 },
                 colors: ['#3c8dbc'],
                 xaxis: {
-                  ticks: [[1, 'Car'], [2, 'Bus'], [3, 'Bike'], [4, 'Van'], [5, 'Truck'], [6, 'Bicycle'], [7, "Rikshaw"]]
+                  ticks: [[1, 'Car'], [2, 'Bus'], [3, 'Bike'], [4, 'Van'], [5, 'Truck'], [6, "Rikshaw"]]
                 }
               });
               $.plot('#donut-chart', respnse.donut_data, {
@@ -567,7 +566,7 @@
           }
         )
       }
-        , 5000
+        , 4000
       );
 
     }

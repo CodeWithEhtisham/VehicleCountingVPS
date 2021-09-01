@@ -44,7 +44,7 @@
           <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="#" class="nav-link">
+          <a href="{{url_for('home')}}" class="nav-link">
             <span class="badge badge-warning " style="background-color:rgb(144,210,250); font-size: medium;">Home</span>
           </a>
         </li>
@@ -138,7 +138,7 @@
         </li> -->
         <!-- Notifications Dropdown Menu -->
         <li class="nav-item dropdown">
-          <a href="{{ url_for('history') }}">
+          <a href="#">
             <!-- <i class="far fa-bell"></i> -->
             <span class="badge badge-warning navbar-badge"
               style="background-color:rgb(144,210,250); font-size: medium;">History</span>
@@ -452,7 +452,7 @@
 
             $(function () {
                 // Call every 1000 miliseconds
-                window.setInterval(ShowCurrentTime, 5000);
+                window.setInterval(ShowCurrentTime, 4000);
             });
 
     // function parsedate(y, m, d, h, mi, s) {

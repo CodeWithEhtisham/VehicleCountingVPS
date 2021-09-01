@@ -68,7 +68,7 @@ waiting=True
 # streams=gen(True)
 
 
-def fetchDataframe(limit=100):
+def fetchDataframe(limit=200):
     con = sqlite3.connect("database.db")
     mycursor = con.cursor()
     

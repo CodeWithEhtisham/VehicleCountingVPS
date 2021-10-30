@@ -5,4 +5,4 @@ Pillow
 flask-socketio==5.1
 eventlet
 gunicorn
-cv2
+opencv-python

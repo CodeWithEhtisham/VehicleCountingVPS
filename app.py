@@ -256,7 +256,7 @@ def home():
     # flags=False
     # gen(False)
     return render_template("index.html", jsondata=get_json())
-@app.route("/", methods=['GET', 'POST'])
+@app.route("/index", methods=['GET', 'POST'])
 def index():
     # try:
     #     del streams
@@ -266,6 +266,10 @@ def index():
     # gen(False)
     return render_template("index.html", jsondata=get_json())
 
+@app.route('/')
+def main():
+    print('main manu uploaded.....')
+    return render_template("main.html")
 # @app.route('/video_feed')
 # def video_feed():
     

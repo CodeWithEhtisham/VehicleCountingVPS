@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 from flask import Flask, Response, render_template, request, jsonify
 import json
-import datetime
+# import datetime
 from PIL import Image
 import io
 import sqlite3
@@ -9,11 +9,32 @@ import sqlite3
 import base64
 import numpy as np
 import pandas as pd
-import time
+from flask_socketio import SocketIO,emit
+# import time
 # import sys
 # import os
 # from utils import getter,setter
 app = Flask(__name__)
+sio=SocketIO(app)
+
+@sio.on("connect")
+def connect():
+    print("client connected successful")
+    # emit('graph data',data={
+    #       't': '2021-10-05 15:55:50.229885',
+    #       'y': 30
+    #     },bardata="hello")
+    # emit("image","sending data server to clint",broadcast=True)
+# @sio.on("detection")
+# def detection(json):
+#     image=json['image']
+
+
+
+@sio.on('my image')
+def get_image(image):
+    # print(image)
+    emit('frame', image,broadcast=True)
 # global flags 
 flags=False
 waiting=True

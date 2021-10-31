@@ -1,6 +1,4 @@
 
-/* there is add some logos */
-
 /* first card */
 .card {
     display: grid;
@@ -65,7 +63,7 @@ h3{
   .card-image {
     grid-area: image;
     height: 280px;
-    background: url("photo1.jpg");
+    background: url("images/photo1.jpg");
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     background-size: cover;
@@ -188,7 +186,7 @@ h3{
   }
   .card-image2 {
     grid-area: image;
-    background: url("photo2.jpg");
+    background: url("images/photo2.jpg");
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     background-size: cover;
@@ -198,7 +196,7 @@ h3{
     margin: 25px;
   }
   .card-text2 .date2 {
-    color: orange;
+    color: rgb(255, 165, 0);
     font-size:18px;
   }
   .card-text2 p {
@@ -294,7 +292,7 @@ h3{
     left: 0;
     width: 30px;
     height: 50px;
-    background: green;
+    background: rgb(0, 255, 0);
     border-bottom-left-radius: 60px;
     border-top-left-radius: 60px;
     z-index: 3;
@@ -311,7 +309,7 @@ h3{
   }
   .card-image3 {
     grid-area: image;
-    background: url("photo3.jpg");
+    background: url("images/photo3.jpg");
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     background-size: cover;

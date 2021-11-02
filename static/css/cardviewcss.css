@@ -6,9 +6,9 @@
     grid-template-rows: 280px 120px;
     grid-template-areas: "image" "text" "stats";
   
-    border-radius: 18px;
+    border-radius: 25px;
     background: white;
-    box-shadow: 5px 5px 15px rgba(0,0,0,0.9);
+    box-shadow: 5px 5px 15px yellow;
     font-family: roboto;
     text-align: center;
   }
@@ -33,7 +33,7 @@ h3{
     left: -30px;
     width: 310px;
     height: 50px;
-    background: red;
+    background: rgb(52,58,64);
     border-radius: 20px;
     border-bottom-left-radius: 0;
     z-index: 9999999;
@@ -45,7 +45,7 @@ h3{
     left: 0;
     width: 30px;
     height: 50px;
-    background: rgb(160, 0, 0);
+    background: rgb(52,58,64);
     border-bottom-left-radius: 60px;
     border-top-left-radius: 60px;
     z-index: 3;
@@ -57,23 +57,22 @@ h3{
     left: 0;
     width: 25px;
     height: 30px;
-    background: red;
+    background: rgb(52,58,64);
     border-bottom-left-radius: 5px;
   }
   .card-image {
     grid-area: image;
     height: 280px;
     background: url("images/photo1.jpg");
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
     background-size: cover;
+    border-radius: 5px 5px 0px 0px;
   }
   .card-text {
     grid-area: text;
     margin: 25px;
   }
   .card-text .date {
-    color: red;
+    color: rgb(52,58,64);
     font-size:18px;
   }
   .card-text p {
@@ -91,9 +90,7 @@ h3{
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr;
   
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-    background: red;
+    background: rgb(52,58,64);
   }
   .card-stats .stat {
     display: flex;
@@ -122,7 +119,7 @@ h3{
   }
   .card:hover {
     transform: scale(1.15);
-    box-shadow: 5px 5px 15px rgba(0,0,0,0.6);
+    box-shadow: 5px 5px 15px red;
   }
   .card {
     transition: 0.5s ease;
@@ -132,7 +129,7 @@ h3{
   /* second card */
 .card2 {
     display: grid;
-    grid-template-columns: 300px;
+    grid-template-columns: 100%;
     grid-template-rows: 280px 120px;
     grid-template-areas: "image" "text" "stats";
   
@@ -157,7 +154,7 @@ h3{
     left: -30px;
     width: 310px;
     height: 50px;
-    background: orange;
+    background: rgb(52,58,64);
     border-radius: 20px;
     border-bottom-left-radius: 0;
     z-index: 9999999;
@@ -169,7 +166,7 @@ h3{
     left: 0;
     width: 30px;
     height: 50px;
-    background: rgb(184, 119, 0);
+    background: rgb(52,58,64);
     border-bottom-left-radius: 60px;
     border-top-left-radius: 60px;
     z-index: 3;
@@ -181,7 +178,7 @@ h3{
     left: 0;
     width: 25px;
     height: 30px;
-    background: orange;
+    background: rgb(52,58,64);
     border-bottom-left-radius: 5px;
   }
   .card-image2 {
@@ -196,7 +193,7 @@ h3{
     margin: 25px;
   }
   .card-text2 .date2 {
-    color: rgb(255, 165, 0);
+    color: rgb(52,58,64);
     font-size:18px;
   }
   .card-text2 p {
@@ -216,7 +213,7 @@ h3{
   
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
-    background: orange;
+    background: rgb(52,58,64);
   }
   .card-stats2 .stat2 {
     display: flex;
@@ -255,7 +252,7 @@ h3{
    /* third card */
    .card3 {
     display: grid;
-    grid-template-columns: 300px;
+    grid-template-columns: 100%;
     grid-template-rows: 280px 120px;
     grid-template-areas: "image" "text" "stats";
   
@@ -280,7 +277,7 @@ h3{
     left: -30px;
     width: 310px;
     height: 50px;
-    background: rgb(0, 255, 0);
+    background: rgb(52,58,64);
     border-radius: 20px;
     border-bottom-left-radius: 0;
     z-index: 9999999;
@@ -292,7 +289,7 @@ h3{
     left: 0;
     width: 30px;
     height: 50px;
-    background: rgb(0, 255, 0);
+    background: rgb(52,58,64);
     border-bottom-left-radius: 60px;
     border-top-left-radius: 60px;
     z-index: 3;
@@ -304,7 +301,7 @@ h3{
     left: 0;
     width: 24px;
     height: 30px;
-    background: rgb(0, 255, 0);
+    background: rgb(52,58,64);
     border-bottom-left-radius: 5px;
   }
   .card-image3 {
@@ -319,7 +316,7 @@ h3{
     margin: 25px;
   }
   .card-text3 .date3 {
-    color: rgb(0, 255, 0);
+    color: rgb(52,58,64);
     font-size:18px;
   }
   .card-text3 p {

@@ -1,29 +1,22 @@
 #!/usr/bin/python3
 from flask import Flask, Response, render_template, request, jsonify
 import json
-# import datetime
 from PIL import Image
 import io
 import sqlite3
-# from servsocket import Streaming_Video
 import base64
 import numpy as np
 import pandas as pd
-
 from flask_socketio import SocketIO,emit
-# import time
-# =======
 import time
-# >>>>>>> 5b8cdf8d10fbab90423e46c5fb708c5606a0cc0d
-# import sys
-# import os
-# from utils import getter,setter
 app = Flask(__name__)
 sio=SocketIO(app)
 
 @sio.on("connect")
 def connect():
     print("client connected successful")
+    emit("page data detection",
+    {"total":50},broadcast=True)
     # emit('graph data',data={
     #       't': '2021-10-05 15:55:50.229885',
     #       'y': 30
@@ -32,6 +25,15 @@ def connect():
 # @sio.on("detection")
 # def detection(json):
 #     image=json['image']
+@sio.on("main page socket")
+def vehicle_detection(json):
+    print(json['counts'])
+    # """detection code here and save into database"""
+    sio.emit('page data detection',"jkdfajlkasjf",broadcast=True)
+
+@sio.on("frame get")
+def frames(data):
+    emit("frame",data)
 
 
 
@@ -42,55 +44,6 @@ def get_image(image):
 # global flags 
 flags=False
 waiting=True
-# stream = Streaming_Video('0.0.0.0', 5555)
-
-
-# def gen(status=False):
-#         print("start status ,",status)
-#         global stream
-#         # global counterFlag
-       
-        
-#         while True:
-#             # print("app counter flag ",getter())
-#             if getter():
-#                 # del stream
-#                 # os.execv(__file__, sys.argv)
-#                 # stream.stop()
-#                 print("if true")
-#                 # stream = Streaming_Video('0.0.0.0', 5555)
-#                 stream.start()
-                
-#                 setter(False)
-#                 print(getter())
-#             if stream.streaming:
-#             # frame=pickle.loads(stream.get_jpeg(), fix_imports=True, encoding="bytes")
-#             # print(frame)
-#             # frame = frame.decode()
-#             # print('frame',frame[0:100])
-#             # img_conv = base64.b64decode(frame)
-#             # as_np = np.frombuffer(img_conv, dtype=np.uint8)
-#             # org_im = cv2.imdecode(as_np,flags=1)
-#             # yield(org_im)
-#             # print("frame",stream.get_jpeg())
-#             # print("sleep")
-#                 f = open('2.jpg', 'wb')
-#                 f.write(stream.get_jpeg())
-#                 f.close()
-#                 # print(type(stream.get_jpeg()))
-#                 # image=Image.open(b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + stream.get_jpeg() + b'\r\n\r\n')
-#                 # image.save(r"img")
-#                 # time.sleep(4)
-#                 yield (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + stream.get_jpeg() + b'\r\n\r\n')
-#                 print("status   ",status)
-#                 # if status==False:
-#                 #     print("stop stream")
-#                 #     stream.stop()
-#                 #     del stream
-#                 # else:
-#                 #     print("continue stream")
-#                 #     continue
-# streams=gen(True)
 
 
 def fetchDataframe(limit=200):
@@ -270,6 +223,8 @@ def index():
 def main():
     print('main manu uploaded.....')
     return render_template("main.html")
+
+# @sio.
 # @app.route('/video_feed')
 # def video_feed():
     

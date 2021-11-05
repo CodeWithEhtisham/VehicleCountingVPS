@@ -135,6 +135,6 @@ cv2.destroyAllWindows()
 def disconnect():
     print('disconnected from server')
 
-sio.connect('http://192.168.18.34:4000/')
+sio.connect('http://127.0.0.1:8000')
 # sio.connect('http://143.110.179.46:4444')
 sio.wait()

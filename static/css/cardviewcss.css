@@ -63,7 +63,7 @@ h3{
   .card-image {
     grid-area: image;
     height: 280px;
-    background: url("images/photo1.jpg");
+    
     background-size: cover;
     border-radius: 5px 5px 0px 0px;
   }

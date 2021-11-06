@@ -10,14 +10,13 @@ sio.on('disconnect', () => {
 });
 
 sio.on("frame", (data) => {
-  console.log("frame received")
+  console.log("frame received"+data)
 //   document.getElementById("frames").src = "data:image/png;base64," + data;
 document.getElementById('card1').style.backgroundImage ="data:image/png;base64," + data ;
 
 });
 sio.on("page data detection", (data) =>{
-    console.log(data['carcount'])
-
+    // console.log(data['carcount'])
     // document.getElementById("frames").src = "data:image/png;base64," + json['image'];
     document.getElementById("total").textContent=data['total']
     document.getElementById("carcount").textContent=data['cartotal']

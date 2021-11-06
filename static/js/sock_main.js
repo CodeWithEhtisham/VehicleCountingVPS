@@ -16,7 +16,7 @@ document.getElementById('card1').style.backgroundImage ="data:image/png;base64,"
 
 });
 sio.on("page data detection", (data) =>{
-    console.log(data)
+    console.log(data['carcount'])
 
     // document.getElementById("frames").src = "data:image/png;base64," + json['image'];
     document.getElementById("total").textContent=json['total']

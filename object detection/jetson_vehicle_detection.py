@@ -62,8 +62,8 @@ def connect():
             # ret,buffer=cv2.imencode(".jpg",frame)
             # buffer=buffer.tobytes()
             # print(buffer)
-            print(results)
-            print("len of list :",len(results))
+            # print(results)
+            # print("len of list :",len(results))
             frame = base64.b64encode(cv2.imencode('.jpg', frame,[cv2.IMWRITE_JPEG_QUALITY, 60])[1]).decode()
 
             # string_img = base64.b64encode(cv2.imencode('.jpg', frame)[1]).decode()
@@ -71,34 +71,34 @@ def connect():
             
             # print("result",results)
             dic={
-                "carcount":0,
-                "buscount":0,
-                "truckcount":0,
-                "rickshawcount":0,
-                "bikecount":0,
-                "vancount":0,
+                "cartotal":0,
+                "bustotal":0,
+                "trucktotal":0,
+                "rickshawtotal":0,
+                "biketotal":0,
+                "vantotal":0,
                 "total":0
 
             }
             for i in results:
                 # print(i["label"])
                 if i["label"] =='Motorcycle' or i["label"]=="Bicycle":
-                    dic['bikecount']+=1
+                    dic['biketotal']+=1
                     dic['total']+=1
                 elif i['label']=='Auto_rikshaw':
-                    dic['rickshawcount']+=1
+                    dic['rickshawtotal']+=1
                     dic['total']+=1
                 elif i['label']=='Bus':
-                    dic['buscount']+=1
+                    dic['bustotal']+=1
                     dic['total']+=1
                 elif i['label']=='Truck':
-                    dic['truckcount']+=1
+                    dic['trucktotal']+=1
                     dic['total']+=1
                 elif i['label']=='Van':
-                    dic['vancount']+=1
+                    dic['vantotal']+=1
                     dic['total']+=1
                 else:
-                    dic['carcount']+=1
+                    dic['cartotal']+=1
                     dic['total']+=1
             obj={
                 "image":frame,

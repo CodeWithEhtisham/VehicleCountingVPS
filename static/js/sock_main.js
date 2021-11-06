@@ -19,11 +19,11 @@ sio.on("page data detection", (data) =>{
     console.log(data['carcount'])
 
     // document.getElementById("frames").src = "data:image/png;base64," + json['image'];
-    document.getElementById("total").textContent=json['total']
-    document.getElementById("carcount").textContent=json['cartotal']
-    document.getElementById("buscount").textContent=json['bustotal']
-    document.getElementById("truckcount").textContent=json['trucktotal']
-    document.getElementById("bikecount").textContent=json['biketotal']
-    document.getElementById("rickshawcount").textContent=json['rickshawtotal']
-    document.getElementById("vancount").textContent=json['vantotal']
+    document.getElementById("total").textContent=data['total']
+    document.getElementById("carcount").textContent=data['cartotal']
+    document.getElementById("buscount").textContent=data['bustotal']
+    document.getElementById("truckcount").textContent=data['trucktotal']
+    document.getElementById("bikecount").textContent=data['biketotal']
+    document.getElementById("rickshawcount").textContent=data['rickshawtotal']
+    document.getElementById("vancount").textContent=data['vantotal']
 });
